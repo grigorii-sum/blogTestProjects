@@ -18,10 +18,6 @@ class Blog(models.Model):
         if created:
             Blog.objects.create(name='blog of ' + str(instance))
 
-    @receiver(post_save, sender=User)
-    def save_user_blog(sender, instance, **kwargs):
-        instance.blog.save()
-
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
@@ -32,4 +28,3 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-

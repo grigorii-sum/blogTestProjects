@@ -13,7 +13,6 @@
 ### pip3 install -r requirements.txt
 
 (миграции для работы базы данных)
-### python3 manage.py makemigrations
 ### python3 manage.py migrate
 
 (запуск приложения на локальном сервере)
