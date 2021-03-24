@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Создание поста
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+        <h1 align="center">СОЗДАНИЕ ПОСТА</h1>
+		<form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Название статьи</label>
+                <input class="form-control" name="title">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Основной текст</label>
+                <input class="form-control" name="text">
+            </div>
+            <button type="submit" class="btn btn-outline-primary">Создать пост</button>
+        </form>
+	</div>
+{% endblock %}

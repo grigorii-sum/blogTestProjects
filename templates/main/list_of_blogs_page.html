@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Все блоги
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+        <h1 align="center">ВСЕ БЛОГИ</h1>
+        {% if object_list %}
+            {% for object in object_list %}
+                {% if user not in object.subscriptions.all %}
+                    <a href="/blog/{{ object.id }}/">
+                        <div class="card border-primary mb-3">
+                            <div class="card-body text-primary">
+                                <h3 class="card-title">{{ object.name }}</h3>
+                            </div>
+                            <div>
+                                <a class="btn btn-danger" href="/change_blog_subscription/{{ object.id }}/" style="width: 100%;">подписаться</a>
+                            </div>
+                        </div>
+                    </a>
+                {% else %}
+                    <a href="/blog/{{ object.id }}/">
+                        <div class="card border-primary mb-3">
+                            <div class="card-body text-primary">
+                                <h3 class="card-title">{{ object.name }}</h3>
+                            </div>
+                            <div>
+                                <a class="btn btn-secondary" href="/change_blog_subscription/{{ object.id }}/" style="width: 100%;">отписаться</a>
+                            </div>
+                        </div>
+                    </a>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <p>Нет ни одного блога!</p>
+        {% endif %}
+	</div>
+{% endblock %}
