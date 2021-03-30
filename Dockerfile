@@ -35,8 +35,5 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN pip3 install --upgrade pip
 RUN pip3 install pipenv
 
-# Install project dependencies
-#RUN pipenv install --skip-lock --system --dev
-
 EXPOSE 8888
 CMD gunicorn blogTestProject.wsgi:application --bind localhost:$PORT
