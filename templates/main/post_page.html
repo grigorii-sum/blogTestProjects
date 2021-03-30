@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ object.name }}
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+        <h1 align="center">Пост из блога "{{ blog.name }}"</h1>
+            {% if user not in object.readers.all %}
+                <div class="card border-primary mb-3">
+                    <div class="card-header">{{ object.blog_id }}</div>
+                    <div class="card-body text-primary">
+                        <h3 class="card-title">{{ object.title }}</h3>
+                        <p class="card-text">{{ object.text }}</p>
+                    </div>
+                    <div class="card-footer">Время создания: {{ object.created_at }}</div>
+                    <div>
+                        <a class="btn btn-primary" href="/change_post_mark/{{ object.id }}/" style="width: 100%;">пометить пост как прочитанный</a>
+                    </div>
+                </div>
+            {% else %}
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-header">{{ object.blog_id }}</div>
+                    <div class="card-body text-white">
+                        <h3 class="card-title">{{ object.title }}</h3>
+                        <p class="card-text">{{ object.text }}</p>
+                    </div>
+                    <div class="card-footer">Время создания: {{ object.created_at }}</div>
+                    <div>
+                        <a class="btn btn-primary" href="/change_post_mark/{{ object.id }}/" style="width: 100%;">пометить пост как непрочитанный</a>
+                    </div>
+                </div>
+            {% endif %}
+	</div>
+{% endblock %}

@@ -1,12 +1,19 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Лента новостей
+    {{ object.name }}
 {% endblock %}
 
 {% block content %}
 	<div class="container">
-        <h1 align="center">ЛЕНТА НОВОСТЕЙ</h1>
+        <h1 align="center">{{ object.name }}</h1>
+        {% if user.id == object.id %}
+            <div class="card border-danger mb-3">
+                <div>
+                    <a class="btn btn-danger" href="/create/post/" style="width: 100%;">написать новый пост</a>
+                </div>
+            </div>
+        {% endif %}
         {% if posts %}
             {% for object in posts %}
                 {% if user not in object.readers.all %}
@@ -40,7 +47,7 @@
                 {% endif %}
             {% endfor %}
         {% else %}
-            <p>Вы не подписаны ни на один блог!</p>
+            <p>В блоге нет ни одного поста!</p>
         {% endif %}
 	</div>
 {% endblock %}

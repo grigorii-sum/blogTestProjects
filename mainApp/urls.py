@@ -1,6 +1,16 @@
 from django.urls import path
 
-from .views import login_page, logout_user, BlogListView, PostListView, create_post_page, BlogDetailView, change_post_mark, change_blog_subscription
+from .views import (
+    login_page,
+    logout_user,
+    PostListView,
+    PostDetailView,
+    create_post_page,
+    change_post_mark,
+    BlogListView,
+    BlogDetailView,
+    change_blog_subscription
+)
 
 urlpatterns = [
     # LOG IN and LOG OUT
@@ -9,7 +19,8 @@ urlpatterns = [
 
     # work with POST model
     path('feed/', PostListView.as_view(), name="feed"),
-    path('post/create/', create_post_page, name="create-post"),
+    path('post/<pk>/', PostDetailView.as_view(), name='post-detail'),
+    path('create/post/', create_post_page, name="create-post"),
     path('change_post_mark/<int:id>/', change_post_mark, name='change-mark'),
 
     # work with BLOG model
